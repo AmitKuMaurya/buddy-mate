@@ -1,4 +1,5 @@
 import express,{Request,Response, Application} from "express";
+import {dbConnection} from "./config/database";
 import { createServer } from "http";
 import {Server} from "socket.io"
 // import { Server } from "http";
@@ -25,6 +26,7 @@ io.on("connection",(socket)=>{
 
 
 app.listen(PORT, async()=>{
+    await dbConnection();
     console.log({Server : `Listing on Port ${PORT} 🤙`})
 })
 
