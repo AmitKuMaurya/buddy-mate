@@ -16,17 +16,17 @@ app.get("/",(req : Request, res : Response)=>{
 
 const server = createServer(app);
 const io = new Server(server);
-io.on("connection",(socket)=>{
-    console.log("Connection done.");
-    socket.send("Hey Clinet, How are you? \n from server!")
-    socket.on("chat message",(msg)=>{
-        console.log(`${msg} Thanks for messageing me!`);
-    })
-})
+io.on('connection', (socket) => {
+    socket.on('chat message', (msg : string) => {
+      console.log('message: ' + msg);
+    });
+  });
+  
+  
 
 
 app.listen(PORT, async()=>{
     await dbConnection();
-    console.log({Server : `Listing on Port ${PORT} 🤙`})
+    console.log({Server : `Listing on Port ${PORT} 🤙`});
 })
 
